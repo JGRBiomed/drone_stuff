@@ -10,6 +10,8 @@
     var con = new Bridge("ws://138.16.160.10:9090");
     //var con = new Bridge("ws://localhost:9090");
     var spd = 1.0;
+    var tmr = 0;
+    var tmr_max = 5;	
 
     // send velocity command to the robot
     function takeoff() {
@@ -25,8 +27,13 @@
         con.callService({ }, '/ardrone/togglecam');
     }
 
+    function flipdrone() {
+        con.callService({ }, '/ardrone/setflightanimation', {"type":16,"duration":0});
+    }
+
     function start_moving(keycode) {
 	    console.log("Starting to move, keycode: " + keycode);
+	while (tmr < tmr_max){
 	    if (keycode == 38) {
 		// Forward
 		con.publish('/cmd_vel', {"linear":{"x":spd,"y":0,"z":0},"angular":{"x":0,"y":0,"z":0}});
@@ -57,6 +64,8 @@
                 land();
             } else if (keycode == 33) {
                 togglecam();
+            } else if (keycode == 48) {
+                flipdrone();
             } else if (keycode == 44) {
 		// Yes
     		setTimeout(function() {
@@ -82,7 +91,18 @@
 					}, 800);
 				}, 500);
 		}, 500);
-	    } else if (keycode == 46) { // FORWARD increase speed
+	    } /*else if (keycode == 46) { // FORWARD increase speed
+		spd = spd + 0.1;
+		document.pointform.spd.value = spd;
+	    }
+ 	      else if (keycode == 47) { // FORWARD decrease speed
+		spd = spd - 0.1;
+		document.pointform.spd.value = spd;
+	    }*/
+	tmr = tmr + 0.1;
+}	
+tmr = 0; // reset timer
+if (keycode == 46) { // FORWARD increase speed
 		spd = spd + 0.1;
 		document.pointform.spd.value = spd;
 	    }
@@ -90,7 +110,7 @@
 		spd = spd - 0.1;
 		document.pointform.spd.value = spd;
 	    }
-
+stop_moving(keycode);
     }
 
     function stop_moving(keycode) {
@@ -158,7 +178,9 @@
         addlisteners(button_incr,46);
         var button_decr = document.getElementById ("decrease");
         addlisteners(button_decr,47);
-	document.pointform.spd.value = spd;      
+	document.pointform.spd.value = spd;
+	var button_flip = document.getElementById ("flip");
+        addlisteners(button_flip,48);      
 	}
 
 
@@ -183,10 +205,13 @@ Speed = <input type="text" name="spd" size="4" />
 <input type="button" id="land" value="land" style="width:200px;height:100px;font-size:30" >
 </td>
 <td>
+<input type="button" id="flip" value="FLIP" style="width:200px;height:100px;font-size:30;color:Red" >
+</td>
+<td>
 <input type="button" id="togglecam" value="togglecam" style="width:200px;height:100px;font-size:30" >
 </td>
 <th colspan="2">
-<div id="countme" style="font-size:30;text-align:center"> update 10_12_13</div>
+<div id="countme" style="font-size:30;text-align:center"> update 10_15_13</div>
 </th>
 </tr>
 </table>
