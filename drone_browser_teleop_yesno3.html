@@ -31,6 +31,14 @@
         con.callService({ }, '/ardrone/setflightanimation', {"type":16,"duration":0});
     }
 
+    function yesbehav() {
+        con.callService({ }, '/ardrone/setflightanimation', {"type":2,"duration":0});
+    }
+
+    function nobehav() {
+        con.callService({ }, '/ardrone/setflightanimation', {"type":9,"duration":2000});
+    }
+
     function start_moving(keycode) {
 	    console.log("Starting to move, keycode: " + keycode);
 	while (tmr < tmr_max){
@@ -66,7 +74,7 @@
                 togglecam();
             } else if (keycode == 48) {
                 flipdrone();
-            } else if (keycode == 44) {
+            } /*else if (keycode == 44) {
 		// Yes
     		setTimeout(function() {
   			con.publish('/cmd_vel', {"linear":{"x":-0.5,"y":0,"z":0},"angular":{"x":0,"y":0,"z":0}});
@@ -79,6 +87,8 @@
 		}, 500);
 	    } else if (keycode == 45) {
 		// No
+		//nobehav();
+	    //}
     		setTimeout(function() {
   			con.publish('/cmd_vel', {"linear":{"x":0.0,"y":0,"z":0},"angular":{"x":0,"y":0,"z":1.0}});					
     		setTimeout(function() {
@@ -91,26 +101,25 @@
 					}, 800);
 				}, 500);
 		}, 500);
-	    } /*else if (keycode == 46) { // FORWARD increase speed
-		spd = spd + 0.1;
-		document.pointform.spd.value = spd;
-	    }
- 	      else if (keycode == 47) { // FORWARD decrease speed
-		spd = spd - 0.1;
-		document.pointform.spd.value = spd;
-	    }*/
+	    } */ // end NO behav
 	tmr = tmr + 0.1;
-}	
-tmr = 0; // reset timer
-if (keycode == 46) { // FORWARD increase speed
+} // end while loop	
+	tmr = 0; // reset timer
+	if (keycode == 46) { // FORWARD increase speed
 		spd = spd + 0.1;
 		document.pointform.spd.value = spd;
 	    }
  	      else if (keycode == 47) { // FORWARD decrease speed
 		spd = spd - 0.1;
 		document.pointform.spd.value = spd;
+	    } else if (keycode == 44) {
+		// YES
+		yesbehav();
+	    } else if (keycode == 45) {
+		// NO
+		nobehav();
 	    }
-stop_moving(keycode);
+	stop_moving(keycode);
     }
 
     function stop_moving(keycode) {
