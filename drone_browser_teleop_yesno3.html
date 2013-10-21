@@ -11,7 +11,7 @@
     //var con = new Bridge("ws://localhost:9090");
     var spd = 1.0;
     var tmr = 0;
-    var tmr_max = 5;	
+    var tmr_max = 5; //5	
 
     // send velocity command to the robot
     function takeoff() {
@@ -29,6 +29,10 @@
 
     function flipdrone() {
         con.callService({ }, '/ardrone/setflightanimation', {"type":16,"duration":0});
+    }
+
+    function wavedrone() {
+        con.callService({ }, '/ardrone/setflightanimation', {"type":13,"duration":0});
     }
 
     function yesbehav() {
@@ -72,8 +76,10 @@
                 land();
             } else if (keycode == 33) {
                 togglecam();
-            } else if (keycode == 48) {
+            /*} else if (keycode == 48) {
                 flipdrone();
+            } else if (keycode == 49) {
+                wavedrone();*/
             } /*else if (keycode == 44) {
 		// Yes
     		setTimeout(function() {
@@ -118,7 +124,11 @@
 	    } else if (keycode == 45) {
 		// NO
 		nobehav();
-	    }
+	    } else if (keycode == 48) {
+                flipdrone();
+            } else if (keycode == 49) {
+                wavedrone();
+	}
 	stop_moving(keycode);
     }
 
@@ -189,7 +199,9 @@
         addlisteners(button_decr,47);
 	document.pointform.spd.value = spd;
 	var button_flip = document.getElementById ("flip");
-        addlisteners(button_flip,48);      
+        addlisteners(button_flip,48);
+	var button_wave = document.getElementById ("wave");
+        addlisteners(button_wave,49);       
 	}
 
 
@@ -215,6 +227,9 @@ Speed = <input type="text" name="spd" size="4" />
 </td>
 <td>
 <input type="button" id="flip" value="FLIP" style="width:200px;height:100px;font-size:30;color:Red" >
+</td>
+<td>
+<input type="button" id="wave" value="WAVE" style="width:200px;height:100px;font-size:30;color:Blue" >
 </td>
 <td>
 <input type="button" id="togglecam" value="togglecam" style="width:200px;height:100px;font-size:30" >
