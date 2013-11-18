@@ -62,7 +62,7 @@ Drive your iCreate by pressing the arrow keys. Take off with the enter key.  Sto
 
 <p>
 
-<img src="http://localhost:8080/stream?topic=/ardrone/image_raw?width=200?height=150">
+<img src="http://localhost:8080/stream?topic=/gscam/image_raw?width=200?height=150">
 
 <p>
 </body>
