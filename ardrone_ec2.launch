@@ -1,0 +1,15 @@
+<launch>
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+    </include>
+
+    <node name="mjpeg_server" pkg="mjpeg_server" type="mjpeg_server" output="screen">
+    </node>
+
+    <node name="roswww" pkg="roswww" type="webserver.py" output="screen">
+    </node>
+
+	<node name="ardrone_driver" pkg="ardrone_autonomy" type="ardrone_driver" output="screen" clear_params="true">
+    </node>
+
+</launch>
+
