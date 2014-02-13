@@ -9,7 +9,7 @@
 	// Changed origin to middle bottom 11.14.13 -- JRaiti
     // This is the turtle to connect to
 	//var con = new Bridge("ws://localhost:9090");
-    var con = new Bridge("ws://138.16.160.10:9090");
+    var con = new Bridge("ws://138.16.161.234:9090");
 
     // send velocity command to the robot
     function takeoff() {
@@ -184,9 +184,9 @@ John Raiti john_raiti@brown.edu
 
 <form name="pointform" method="post">
 <div id="pointer_div" onclick="start_moving_mouse(event)">
-<!--<img src="http://localhost:8080/stream?topic=/ardrone/image_raw?width=640?height=480" width=640 height=480 id="cross"></div> -->
+<!--<img src="http://localhost:8080/stream?topic=/ardrone/image_raw?width=640?height=480" width=640 height=480 id="cross"></div>--> 
 <!--<img src="http://localhost:8080/stream?topic=/ardrone/image_raw?quality=0?width=200?height=150" width=640 height=480 id="cross"></div> -->
- <img src="http://138.16.160.10:8080/stream?topic=/ardrone/image_raw?quality=70?width=200?height=150" width=640 height=480 id="cross"></div>
+ <img src="http://138.16.161.234:8080/stream?topic=/ardrone/image_raw?quality=70?width=200?height=150" width=640 height=480 id="cross"></div>
 You pointed on x = <input type="text" name="form_x" size="4" />  y = <input type="text" name="form_y" size="4" />
 Dist from origin @ center bottom = <input type="text" name="dist" size="4" />
 Angle = <input type="text" name="theta" size="4" />

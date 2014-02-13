@@ -7,7 +7,8 @@
 <script type="text/javascript" src="ros.js"></script>
 <script type="text/javascript">
     // This is the turtle to connect to
-    var con = new Bridge("ws://localhost:9090");
+    //var con = new Bridge("ws://localhost:9090");
+	var con = new Bridge("ws://138.16.161.234:9090");
 
     // send velocity command to the robot
     function takeoff() {
@@ -58,11 +59,12 @@
 
 <h1>iCreate controller</h1>
 
-Drive your iCreate by pressing the arrow keys. Take off with the enter key.  Stop with the space key.
+Drive your iCreate by pressing the arrow keys.
 
 <p>
 
-<img src="http://localhost:8080/stream?topic=/gscam/image_raw?width=200?height=150">
+<!--<img src="http://localhost:8080/stream?topic=/gscam/image_raw?width=200?height=150"> -->
+<img src="http://138.16.161.234:8080/stream?topic=/gscam/image_raw?width=200?height=150">
 
 <p>
 </body>
