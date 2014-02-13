@@ -1,0 +1,15 @@
+<launch>
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+    </include>
+
+    <node name="mjpeg_server" pkg="mjpeg_server" type="mjpeg_server" output="screen">
+    </node>
+
+    <node name="gscam" pkg="gscam" type="gscam" output="screen">
+    </node>
+
+	<node name="driver" pkg="irobotcreate_2_1" type="driver" output="screen" clear_params="true">
+    </node>
+
+</launch>
+
